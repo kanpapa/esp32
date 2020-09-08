@@ -300,7 +300,7 @@ void loop(){
             client.println(".button {background-color: #4CAF50; border: none; color: white; padding: 16px 32px;");
             client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;border-bottom: solid 4px #627295;border-radius:3px;}");
             client.println(".button:active { -webkit-transform: translateY(4px);transform: translateY(4px);border-bottom: none;}");
-            client.println(".button2 {background-color: #555555;}</style></head>");
+            client.println("</style></head>");
 
             // Javascript
             client.println("<script type=\"text/javascript\">");
@@ -309,40 +309,48 @@ void loop(){
            
             // Web Page Heading
             client.println("<body><h1>COSMAC VIP OS</h1>");
-            
+
             // 1 2 3 C
-            client.print("<p>");
-            client.println("<button ontouchstart=\"restapi('/1/on')\"; ontouchend=\"restapi('/1/off')\"; class=\"button\">1</button>");
-            client.println("<button ontouchstart=\"restapi('/2/on')\"; ontouchend=\"restapi('/2/off')\"; class=\"button\">2</button>");
-            client.println("<button ontouchstart=\"restapi('/3/on')\"; ontouchend=\"restapi('/3/off')\"; class=\"button\">3</button>");
-            client.println("<button ontouchstart=\"restapi('/C/on')\"; ontouchend=\"restapi('/C/off')\"; class=\"button\">C</button>");
-            client.println("<p>");
+            client.println("<table width=\"100%\"><tr>");
+            client.println("<td><button ontouchstart=\"restapi('/1/on')\"; ontouchend=\"restapi('/1/off')\"; class=\"button\">1</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/2/on')\"; ontouchend=\"restapi('/2/off')\"; class=\"button\">2</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/3/on')\"; ontouchend=\"restapi('/3/off')\"; class=\"button\">3</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/C/on')\"; ontouchend=\"restapi('/C/off')\"; class=\"button\">C</button></td>");
+            client.println("</tr>");
                            
             // 4 5 6 D
-            client.print("<p>");
-            client.println("<button ontouchstart=\"restapi('/4/on')\"; ontouchend=\"restapi('/4/off')\"; class=\"button\">4</button>");
-            client.println("<button ontouchstart=\"restapi('/5/on')\"; ontouchend=\"restapi('/5/off')\"; class=\"button\">5</button>");
-            client.println("<button ontouchstart=\"restapi('/6/on')\"; ontouchend=\"restapi('/6/off')\"; class=\"button\">6</button>");
-            client.println("<button ontouchstart=\"restapi('/D/on')\"; ontouchend=\"restapi('/D/off')\"; class=\"button\">D</button>");
-            client.println("<p>");
+            client.println("<tr>");
+            client.println("<td><button ontouchstart=\"restapi('/4/on')\"; ontouchend=\"restapi('/4/off')\"; class=\"button\">4</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/5/on')\"; ontouchend=\"restapi('/5/off')\"; class=\"button\">5</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/6/on')\"; ontouchend=\"restapi('/6/off')\"; class=\"button\">6</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/D/on')\"; ontouchend=\"restapi('/D/off')\"; class=\"button\">D</button></td>");
+            client.println("</tr>");
                         
             // 7 8 9 E
-            client.print("<p>");
-            client.println("<button ontouchstart=\"restapi('/7/on')\"; ontouchend=\"restapi('/7/off')\"; class=\"button\">7</button>");
-            client.println("<button ontouchstart=\"restapi('/8/on')\"; ontouchend=\"restapi('/8/off')\"; class=\"button\">8</button>");
-            client.println("<button ontouchstart=\"restapi('/9/on')\"; ontouchend=\"restapi('/9/off')\"; class=\"button\">9</button>");
-            client.println("<button ontouchstart=\"restapi('/E/on')\"; ontouchend=\"restapi('/E/off')\"; class=\"button\">E</button>");
-            client.println("<p>");
+            client.println("<tr>");
+            client.println("<td><button ontouchstart=\"restapi('/7/on')\"; ontouchend=\"restapi('/7/off')\"; class=\"button\">7</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/8/on')\"; ontouchend=\"restapi('/8/off')\"; class=\"button\">8</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/9/on')\"; ontouchend=\"restapi('/9/off')\"; class=\"button\">9</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/E/on')\"; ontouchend=\"restapi('/E/off')\"; class=\"button\">E</button></td>");
+            client.println("</tr>");
 
             // A 0 B F
-            client.print("<p>");
-            client.println("<button ontouchstart=\"restapi('/A/on')\"; ontouchend=\"restapi('/A/off')\"; class=\"button\">A</button>");
-            client.println("<button ontouchstart=\"restapi('/0/on')\"; ontouchend=\"restapi('/0/off')\"; class=\"button\">0</button>");
-            client.println("<button ontouchstart=\"restapi('/B/on')\"; ontouchend=\"restapi('/B/off')\"; class=\"button\">B</button>");
-            client.println("<button ontouchstart=\"restapi('/F/on')\"; ontouchend=\"restapi('/F/off')\"; class=\"button\">F</button>");
-            client.println("<p>");
-            
-            client.println("</body></html>");
+            client.println("<tr>");
+            client.println("<td><button ontouchstart=\"restapi('/A/on')\"; ontouchend=\"restapi('/A/off')\"; class=\"button\">A</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/0/on')\"; ontouchend=\"restapi('/0/off')\"; class=\"button\">0</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/B/on')\"; ontouchend=\"restapi('/B/off')\"; class=\"button\">B</button></td>");
+            client.println("<td><button ontouchstart=\"restapi('/F/on')\"; ontouchend=\"restapi('/F/off')\"; class=\"button\">F</button></td>");
+            client.println("</tr>");
+
+            // function
+            client.println("<tr>");
+            client.println("<td>MR</td>");
+            client.println("<td>MW</td>");
+            client.println("<td>TR</td>");
+            client.println("<td>TW</td>");
+            client.println("</tr>");
+
+            client.println("</table></body></html>");
 
             }
             // The HTTP response ends with another blank line

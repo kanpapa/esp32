@@ -3,7 +3,7 @@ ESP32 web-based Hexadecimal Keypad
 
 ## Hardware
 * Controller: ESP32DEV-C
-* Relay Module: Sainsmart 16 Relay Module
+* Relay Module: Sainsmart 16 Relay Module https://www.sainsmart.com/products/16-channel-12v-relay-module
 
 ## Software
 ESP32 remote relay controller program  

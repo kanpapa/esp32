@@ -300,7 +300,7 @@ void loop(){
             client.println(".button {background-color: #4CAF50; border: none; color: white; padding: 16px 32px;");
             client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;border-bottom: solid 4px #627295;border-radius:3px;}");
             client.println(".button:active { -webkit-transform: translateY(4px);transform: translateY(4px);border-bottom: none;}");
-            client.println("</style></head>");
+            client.println(".center {margin-left: auto;margin-right: auto;}</style></head>");
 
             // Javascript
             client.println("<script type=\"text/javascript\">");
@@ -311,7 +311,7 @@ void loop(){
             client.println("<body><h1>COSMAC VIP OS</h1>");
 
             // 1 2 3 C
-            client.println("<table width=\"100%\"><tr>");
+            client.println("<table class=\"center\"><tr>");
             client.println("<td><button ontouchstart=\"restapi('/1/on')\"; ontouchend=\"restapi('/1/off')\"; class=\"button\">1</button></td>");
             client.println("<td><button ontouchstart=\"restapi('/2/on')\"; ontouchend=\"restapi('/2/off')\"; class=\"button\">2</button></td>");
             client.println("<td><button ontouchstart=\"restapi('/3/on')\"; ontouchend=\"restapi('/3/off')\"; class=\"button\">3</button></td>");

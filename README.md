@@ -17,8 +17,10 @@ You can also see it on [my blog](https://kanpapa.com/cosmac/blog/2020/09/cosmac-
 * Schematic: [doc/esp32_remote_relay_rev01_sch.pdf](doc/esp32_remote_relay_rev01_sch.pdf)
 
 ## Software
-ESP32 remote relay controller program  
+ESP32 remote relay controller program for Arduino IDE  
   Kazuhiro Ouchi  @kanpapa  
+  [src/esp32_remote_relay_controller/esp32_remote_relay_controller.ino](src/esp32_remote_relay_controller/esp32_remote_relay_controller.ino)
+   
 
 Original Source:  
   Rui Santos  

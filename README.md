@@ -5,7 +5,7 @@ ESP32 web-based Hexadecimal Keypad
 I will be exhibiting my COSMAC homebrew computer at [Maker Faire Tokyo 2020](https://makezine.jp/event/makers-mft2020/m0029/) in October.
   (In japanese)
 
-However, due to COVID-19 protection, I cannot touch the work directly.
+However, due to COVID-19 protection, I cannot touch the product directly.
 So I decided to use ESP32 and a relay module to operate the COSMAC VIP OS remotely.
 We dared to use relays because we wanted visitors to feel the sensation of touching the switch.
 

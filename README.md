@@ -2,19 +2,18 @@
 ESP32 web-based Hexadecimal Keypad
 
 ## Introduction
-I will be exhibiting my COSMAC homebrew computer at Maker Faire Tokyo 2020 in October.
-https://makezine.jp/event/makers-mft2020/m0029/  (In japanese)
+I will be exhibiting my COSMAC homebrew computer at [Maker Faire Tokyo 2020](https://makezine.jp/event/makers-mft2020/m0029/) in October.
+  (In japanese)
 
 However, due to COVID-19 protection, I cannot touch the work directly.
 So I decided to use ESP32 and a relay module to operate the COSMAC VIP OS remotely.
 We dared to use relays because we wanted visitors to feel the sensation of touching the switch.
 
-You can also see it on my blog. (In japanese)
-https://kanpapa.com/cosmac/blog/2020/09/cosmac-vip-os-ESP32-remote-keypad.html
+You can also see it on [my blog](https://kanpapa.com/cosmac/blog/2020/09/cosmac-vip-os-ESP32-remote-keypad.html). (In japanese)
 
 ## Hardware
 * Controller: ESP32DEV-C
-* Relay Module: Sainsmart 16-Channel 12V Relay Module https://www.sainsmart.com/products/16-channel-12v-relay-module
+* Relay Module: [Sainsmart 16-Channel 12V Relay Module](https://www.sainsmart.com/products/16-channel-12v-relay-module) 
 * Schematic: [doc/esp32_remote_relay_rev01_sch.pdf](doc/esp32_remote_relay_rev01_sch.pdf)
 
 ## Software

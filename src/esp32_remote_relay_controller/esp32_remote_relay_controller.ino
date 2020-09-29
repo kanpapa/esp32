@@ -30,40 +30,7 @@ WiFiServer server(80);
 String header;
 
 // Auxiliar variables to store the current output state
-String output0State = "off";
-String output1State = "off";
-String output2State = "off";
-String output3State = "off";
-String output4State = "off";
-String output5State = "off";
-String output6State = "off";
-String output7State = "off";
-String output8State = "off";
-String output9State = "off";
-String outputAState = "off";
-String outputBState = "off";
-String outputCState = "off";
-String outputDState = "off";
-String outputEState = "off";
-String outputFState = "off";
-
-// Assign output variables to GPIO pins
-const int output13 = 13;
-const int output14 = 14;
-const int output27 = 27;
-const int output26 = 26;
-const int output25 = 25;
-const int output33 = 33;
-const int output32 = 32;
-const int output23 = 23;
-const int output22 = 22;
-const int output21 = 21;
-const int output19 = 19;
-const int output18 = 18;
-const int output17 = 17;
-const int output16 = 16;
-const int output4 = 4;
-const int output5 = 5;
+boolean outputState[16];  // false = off, true = on
 
 // value to GPIO-pin table   0  1  2  3  4  5  6  7  8  9  A  B C  D  E F
 const char num2gpio_data[] = {32,33,25,26,27,14,13,23,22,21,19,18,5,17,16,4};
@@ -141,44 +108,36 @@ void demo_run() {
   }
 }
 
+// Key on
+void key_on(char key) {
+    Serial.print(key,HEX);
+    Serial.println(" on");
+    outputState[key] = true;
+    digitalWrite(num2gpio_data[key], LOW);
+}
+
+// Key off
+void key_off(char key) {
+    Serial.print(key,HEX);
+    Serial.println(" off");
+    outputState[key] = false;
+    digitalWrite(num2gpio_data[key], HIGH);
+}
 
 void setup() {
   Serial.begin(115200);
+
+  // Initialize the state flags as false
+  for (int i = 0 ; i < sizeof(outputState); i++) {
+    outputState[i] = false;
+  }
+
   // Initialize the output variables as outputs
-  pinMode(output32, OUTPUT);  // GPIO32   0
-  pinMode(output33, OUTPUT);  // GPIO33   1
-  pinMode(output25, OUTPUT);  // GPIO25   2
-  pinMode(output26, OUTPUT);  // GPIO26   3
-  pinMode(output27, OUTPUT);  // GPIO27   4
-  pinMode(output14, OUTPUT);  // GPIO14   5
-  pinMode(output13, OUTPUT);  // GPIO13   6
-  pinMode(output23, OUTPUT);  // GPIO23   7
-  pinMode(output22, OUTPUT);  // GPIO22   8
-  pinMode(output21, OUTPUT);  // GPIO21   9
-  pinMode(output19, OUTPUT);  // GPIO19   A
-  pinMode(output18, OUTPUT);  // GPIO18   B
-  pinMode(output5, OUTPUT);   // GPIO5(internal pullup)  C
-  pinMode(output17, OUTPUT);  // GPIO17   D
-  pinMode(output16, OUTPUT);  // GPIO16   E
-  pinMode(output4, OUTPUT);   // GPIO4    F
-    
-  // Set outputs to HIGH
-  digitalWrite(output13, HIGH);
-  digitalWrite(output14, HIGH);
-  digitalWrite(output27, HIGH);
-  digitalWrite(output26, HIGH);
-  digitalWrite(output25, HIGH);
-  digitalWrite(output33, HIGH);
-  digitalWrite(output32, HIGH);
-  digitalWrite(output23, HIGH);
-  digitalWrite(output22, HIGH);
-  digitalWrite(output21, HIGH);
-  digitalWrite(output19, HIGH);
-  digitalWrite(output18, HIGH);
-  digitalWrite(output17, HIGH);
-  digitalWrite(output16, HIGH);
-  digitalWrite(output4, HIGH);
-  digitalWrite(output5, HIGH);
+  for (int i = 0 ; i < sizeof(num2gpio_data); i++) {
+    // Set outputs to HIGH
+    pinMode(num2gpio_data[i], OUTPUT);
+    digitalWrite(num2gpio_data[i], HIGH);
+  }
 
   // Connect to Wi-Fi network with SSID and password
   Serial.println("Setting AP (Access Point)");
@@ -221,148 +180,84 @@ void loop(){
             // turns the GPIOs on and off
             // 0 IO32
             if (header.indexOf("GET /0/on") >= 0) {
-              Serial.println("GPIO 32 on");
-              output0State = "on";
-              digitalWrite(output32, LOW);
+              key_on(0);
             } else if (header.indexOf("GET /0/off") >= 0) {
-              Serial.println("GPIO 32 off");
-              output0State = "off";
-              digitalWrite(output32, HIGH);
+              key_off(0);
             // 1 IO33
             } else if (header.indexOf("GET /1/on") >= 0) {
-              Serial.println("GPIO 33 on");
-              output1State = "on";
-              digitalWrite(output33, LOW);
+              key_on(1);
             } else if (header.indexOf("GET /1/off") >= 0) {
-              Serial.println("GPIO 33 off");
-              output1State = "off";
-              digitalWrite(output33, HIGH);
+              key_off(1);
             // 2 IO25
             } else if (header.indexOf("GET /2/on") >= 0) {
-              Serial.println("GPIO 25 on");
-              output2State = "on";
-              digitalWrite(output25, LOW);
+              key_on(2);
             } else if (header.indexOf("GET /2/off") >= 0) {
-              Serial.println("GPIO 25 off");
-              output2State = "off";
-              digitalWrite(output25, HIGH);
+              key_off(2);
             // 3 IO 26
             } else if (header.indexOf("GET /3/on") >= 0) {
-              Serial.println("GPIO 26 on");
-              output3State = "on";
-              digitalWrite(output26, LOW);
+              key_on(3);
             } else if (header.indexOf("GET /3/off") >= 0) {
-              Serial.println("GPIO 26 off");
-              output3State = "off";
-              digitalWrite(output26, HIGH);
+              key_off(3);
             // 4 IO 27
             } else if (header.indexOf("GET /4/on") >= 0) {
-              Serial.println("GPIO 27 on");
-              output4State = "on";
-              digitalWrite(output27, LOW);
+              key_on(4);
             } else if (header.indexOf("GET /4/off") >= 0) {
-              Serial.println("GPIO 27 off");
-              output4State = "off";
-              digitalWrite(output27, HIGH);
+              key_off(4);
             // 5 IO 14
             } else if (header.indexOf("GET /5/on") >= 0) {
-              Serial.println("GPIO 14 on");
-              output5State = "on";
-              digitalWrite(output14, LOW);
+              key_on(5);
             } else if (header.indexOf("GET /5/off") >= 0) {
-              Serial.println("GPIO 14 off");
-              output5State = "off";
-              digitalWrite(output14, HIGH);
+              key_off(5);
             // 6 IO 13  
             } else if (header.indexOf("GET /6/on") >= 0) {
-              Serial.println("GPIO 13 on");
-              output6State = "on";
-              digitalWrite(output13, LOW);
+              key_on(6);
             } else if (header.indexOf("GET /6/off") >= 0) {
-              Serial.println("GPIO 13 off");
-              output6State = "off";
-              digitalWrite(output13, HIGH);
+              key_off(6);
             // 7 IO 23
             } else if (header.indexOf("GET /7/on") >= 0) {
-              Serial.println("GPIO 23 on");
-              output7State = "on";
-              digitalWrite(output23, LOW);
+              key_on(7);
             } else if (header.indexOf("GET /7/off") >= 0) {
-              Serial.println("GPIO 23 off");
-              output7State = "off";
-              digitalWrite(output23, HIGH);
+              key_off(7);
             // 8 IO 22
             } else if (header.indexOf("GET /8/on") >= 0) {
-              Serial.println("GPIO 22 on");
-              output8State = "on";
-              digitalWrite(output22, LOW);
+              key_on(8);
             } else if (header.indexOf("GET /8/off") >= 0) {
-              Serial.println("GPIO 22 off");
-              output8State = "off";
-              digitalWrite(output22, HIGH);
+              key_off(8);
             // 9 IO21
             } else if (header.indexOf("GET /9/on") >= 0) {
-              Serial.println("GPIO 21 on");
-              output9State = "on";
-              digitalWrite(output21, LOW);
+              key_on(9);
             } else if (header.indexOf("GET /9/off") >= 0) {
-              Serial.println("GPIO 21 off");
-              output9State = "off";
-              digitalWrite(output21, HIGH);
+              key_off(9);
             // A IO19
             } else if (header.indexOf("GET /A/on") >= 0) {
-              Serial.println("GPIO 19 on");
-              outputAState = "on";
-              digitalWrite(output19, LOW);
+              key_on(10);
             } else if (header.indexOf("GET /A/off") >= 0) {
-              Serial.println("GPIO 19 off");
-              outputAState = "off";
-              digitalWrite(output19, HIGH);
+              key_off(10);
             // B IO18
             } else if (header.indexOf("GET /B/on") >= 0) {
-              Serial.println("GPIO 18 on");
-              outputBState = "on";
-              digitalWrite(output18, LOW);
+              key_on(11);
             } else if (header.indexOf("GET /B/off") >= 0) {
-              Serial.println("GPIO 18 off");
-              outputBState = "off";
-              digitalWrite(output18, HIGH);
+              key_off(11);
             // C IO5
             } else if (header.indexOf("GET /C/on") >= 0) {
-              Serial.println("GPIO 5 on");
-              outputCState = "on";
-              digitalWrite(output5, LOW);
+              key_on(12);
             } else if (header.indexOf("GET /C/off") >= 0) {
-              Serial.println("GPIO 5 off");
-              outputCState = "off";
-              digitalWrite(output5, HIGH);
+              key_off(12);
             // D IO17
             } else if (header.indexOf("GET /D/on") >= 0) {
-              Serial.println("GPIO 17 on");
-              outputDState = "on";
-              digitalWrite(output17, LOW);
+              key_on(13);
             } else if (header.indexOf("GET /D/off") >= 0) {
-              Serial.println("GPIO 17 off");
-              outputDState = "off";
-              digitalWrite(output17, HIGH);
+              key_off(13);
             // E IO16
             } else if (header.indexOf("GET /E/on") >= 0) {
-              Serial.println("GPIO 16 on");
-              outputEState = "on";
-              digitalWrite(output16, LOW);
+              key_on(14);
             } else if (header.indexOf("GET /E/off") >= 0) {
-              Serial.println("GPIO 16 off");
-              outputEState = "off";
-              digitalWrite(output16, HIGH);
+              key_off(14);
             // F IO4
             } else if (header.indexOf("GET /F/on") >= 0) {
-              Serial.println("GPIO 4 on");
-              outputFState = "on";
-              digitalWrite(output4, LOW);
+              key_on(15);
             } else if (header.indexOf("GET /F/off") >= 0) {
-              Serial.println("GPIO 4 off");
-              outputFState = "off";
-              digitalWrite(output4, HIGH);
+              key_off(15);
             // AUTO
             } else if (header.indexOf("GET /AUTO") >= 0) {
               Serial.println("START AUTO MODE");

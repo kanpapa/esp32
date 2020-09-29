@@ -1,5 +1,5 @@
 /*********
-ESP32 remote relay controller program
+ESP32 remote relay controller program Ver 2.0
  Kazuhiro Ouchi  @kanpapa
 
  Controller: ESP32DEV-C
@@ -64,6 +64,83 @@ const int output17 = 17;
 const int output16 = 16;
 const int output4 = 4;
 const int output5 = 5;
+
+// value to GPIO-pin table   0  1  2  3  4  5  6  7  8  9  A  B C  D  E F
+const char num2gpio_data[] = {32,33,25,26,27,14,13,23,22,21,19,18,5,17,16,4};
+  
+// Auto mode data
+const char auto_data[] = {0,2,0,0,    // Start address : 0200
+                        0,            // Write
+                        10,2,1,8,
+                        6,1,2,0,
+                        6,2,0,8,
+                        6,3,0,4,
+                        6,4,0,6,
+                        13,1,2,8,
+                        14,3,10,1,
+                        7,1,15,15,
+                        14,4,10,1,
+                        7,1,0,1,
+                        0,0,14,0,
+                        1,2,0,10,
+                        15,15,8,1,
+                        8,1,8,1,
+                        8,1,8,1,
+                        8,1,15,15};   // End address : 021F
+// Auto mode start
+void auto_run() {
+  for (int i = 0 ; i < sizeof(auto_data); i++){
+    digitalWrite(num2gpio_data[auto_data[i]], LOW);
+    Serial.print(num2gpio_data[auto_data[i]],DEC);
+    Serial.println(" ON");
+    delay(200);
+    digitalWrite(num2gpio_data[auto_data[i]], HIGH);
+    Serial.print(num2gpio_data[auto_data[i]],DEC);
+    Serial.println(" OFF");
+    delay(200);
+  }
+}
+
+// Demo mode data
+const char demo_data[] = {0,15,0,0,    // Start address : 0F00
+                        0,             // Write
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; // End address : 0FAF
+
+// Demo mode start
+void demo_run() {
+  for (int i = 0 ; i < sizeof(demo_data); i++){
+    digitalWrite(num2gpio_data[demo_data[i]], LOW);
+    Serial.print(num2gpio_data[demo_data[i]],DEC);
+    Serial.println(" ON");
+    delay(100);
+    digitalWrite(num2gpio_data[demo_data[i]], HIGH);
+    Serial.print(num2gpio_data[demo_data[i]],DEC);
+    Serial.println(" OFF");
+    delay(100);
+  }
+}
+
 
 void setup() {
   Serial.begin(115200);
@@ -286,6 +363,16 @@ void loop(){
               Serial.println("GPIO 4 off");
               outputFState = "off";
               digitalWrite(output4, HIGH);
+            // AUTO
+            } else if (header.indexOf("GET /AUTO") >= 0) {
+              Serial.println("START AUTO MODE");
+              auto_run();
+              Serial.println("END AUTO MODE");
+            // DEMO
+            } else if (header.indexOf("GET /DEMO") >= 0) {
+              Serial.println("START DEMO MODE");
+              demo_run();
+              Serial.println("END DEMO MODE ");
             }
             else
             {
@@ -350,7 +437,10 @@ void loop(){
             client.println("<td>TW</td>");
             client.println("</tr>");
 
-            client.println("</table></body></html>");
+            client.println("</table>");
+            client.println("<p><button ontouchstart=\"restapi('/AUTO')\"; class=\"button\">AUTO</button>  ");
+            client.println("<button ontouchstart=\"restapi('/DEMO')\"; class=\"button\">DEMO</button></p>");
+            client.println("</body></html>");
 
             }
             // The HTTP response ends with another blank line

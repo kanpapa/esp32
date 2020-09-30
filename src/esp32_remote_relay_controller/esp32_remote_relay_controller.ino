@@ -54,19 +54,6 @@ const char auto_data[] = {0,2,0,0,    // Start address : 0200
                         8,1,8,1,
                         8,1,8,1,
                         8,1,15,15};   // End address : 021F
-// Auto mode start
-void auto_run() {
-  for (int i = 0 ; i < sizeof(auto_data); i++){
-    digitalWrite(num2gpio_data[auto_data[i]], LOW);
-    Serial.print(num2gpio_data[auto_data[i]],DEC);
-    Serial.println(" ON");
-    delay(200);
-    digitalWrite(num2gpio_data[auto_data[i]], HIGH);
-    Serial.print(num2gpio_data[auto_data[i]],DEC);
-    Serial.println(" OFF");
-    delay(200);
-  }
-}
 
 // Demo mode data
 const char demo_data[] = {0,15,0,0,    // Start address : 0F00
@@ -94,20 +81,6 @@ const char demo_data[] = {0,15,0,0,    // Start address : 0F00
 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; // End address : 0FAF
 
-// Demo mode start
-void demo_run() {
-  for (int i = 0 ; i < sizeof(demo_data); i++){
-    digitalWrite(num2gpio_data[demo_data[i]], LOW);
-    Serial.print(num2gpio_data[demo_data[i]],DEC);
-    Serial.println(" ON");
-    delay(100);
-    digitalWrite(num2gpio_data[demo_data[i]], HIGH);
-    Serial.print(num2gpio_data[demo_data[i]],DEC);
-    Serial.println(" OFF");
-    delay(100);
-  }
-}
-
 // Key on
 void key_on(char key) {
     Serial.print(key,HEX);
@@ -122,6 +95,26 @@ void key_off(char key) {
     Serial.println(" off");
     outputState[key] = false;
     digitalWrite(num2gpio_data[key], HIGH);
+}
+
+// Auto mode start
+void auto_run() {
+  for (int i = 0 ; i < sizeof(auto_data); i++){
+    key_on(auto_data[i]);
+    delay(100);
+    key_off(auto_data[i]);
+    delay(100);
+  }
+}
+
+// Demo mode start
+void demo_run() {
+  for (int i = 0 ; i < sizeof(demo_data); i++){
+    key_on(demo_data[i]);
+    delay(100);
+    key_off(demo_data[i]);
+    delay(100);
+  }
 }
 
 void setup() {

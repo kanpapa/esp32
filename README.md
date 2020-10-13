@@ -16,13 +16,6 @@ You can also see it on [my blog](https://kanpapa.com/cosmac/blog/2020/09/cosmac-
    <td><img src="https://github.com/kanpapa/esp32_web_hex_keypad/blob/master/pics/Screenshot_cosmac_vip_os_remote1.png"></td>
    <td><img src="https://github.com/kanpapa/esp32_web_hex_keypad/blob/master/pics/cosmac_vip_auto_vram1.jpg"></td>
   </tr>
-  <tr align="center">
-    <td>COSMAC VIP Web UI</td>
-    <td>Photo of this system</td>
-  </tr>
-  <tr align="center">
-    <td colspan="2"><img src="https://github.com/fourstix/MCard1802ESP32Web/blob/main/pics/I2CFrontPanelSchematic.jpg"></td>
-  </tr>
 </table>
 
 [YouTube Video](https://youtu.be/Avk82hSGX6A)

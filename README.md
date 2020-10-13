@@ -1,7 +1,9 @@
 # esp32_web_hex_keypad
+
 ESP32 web-based Hexadecimal Keypad
 
 ## Introduction
+
 I will be exhibiting my COSMAC homebrew computer at [Maker Faire Tokyo 2020](https://makezine.jp/event/makers-mft2020/m0029/) in October.
   (In japanese)
 
@@ -22,16 +24,19 @@ You can also see it on [my blog](https://kanpapa.com/cosmac/blog/2020/09/cosmac-
   </tr>
 </table>
 
+* [YouTube Video](https://youtu.be/Avk82hSGX6A)
+
 ## Hardware
+
 * Controller: ESP32DEV-C
 * Relay Module: [Sainsmart 16-Channel 12V Relay Module](https://www.sainsmart.com/products/16-channel-12v-relay-module) 
 * Schematic: [doc/esp32_remote_relay_rev01_sch.pdf](doc/esp32_remote_relay_rev01_sch.pdf)
 
 ## Software
+
 ESP32 remote relay controller program for Arduino IDE  
   Kazuhiro Ouchi  @kanpapa  
   [src/esp32_remote_relay_controller/esp32_remote_relay_controller.ino](src/esp32_remote_relay_controller/esp32_remote_relay_controller.ino)
-   
 
 Original Source:  
   Rui Santos  

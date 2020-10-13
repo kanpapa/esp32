@@ -20,7 +20,13 @@ You can also see it on [my blog](https://kanpapa.com/cosmac/blog/2020/09/cosmac-
     <td>COSMAC VIP Web UI</td>
     <td>Photo of this system</td>
   </tr>
+  <tr align="center">
+    <td colspan="2"><img src="https://github.com/fourstix/MCard1802ESP32Web/blob/main/pics/I2CFrontPanelSchematic.jpg"></td>
+  </tr>
 </table>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Avk82hSGX6A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 ## Hardware
 * Controller: ESP32DEV-C

@@ -24,7 +24,7 @@ You can also see it on [my blog](https://kanpapa.com/cosmac/blog/2020/09/cosmac-
   </tr>
 </table>
 
-* [YouTube Video](https://youtu.be/Avk82hSGX6A)
+* [YouTube Video](https://youtu.be/_aDMV53iIsk)
 
 ## Hardware
 
